@@ -22,7 +22,7 @@ function addBookToLibrary(title, author, pages, read) {
   }
 }
 
-// Display each book on the page
+// Display each book on the page (DOM manipulation)
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     //Create new card element for the book
