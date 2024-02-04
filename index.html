@@ -10,13 +10,13 @@
   <body>
     <div class="nav">
       <h1>My Library</h1>
-      <button id="addbutton">Add book</button>
+      <button id="addbutton" onclick="openPopup()">Add book</button>
     </div>
     <div class="container">
       <div class="content"></div>
     </div>
 
-    <div id="addbookform">
+    <div class="addbookform">
       <h2>Add new book</h2>
       <form>
         <div class="form-item">
@@ -47,7 +47,12 @@
 
         <br />
 
-        <input type="submit" value="Submit" id="submit-btn" />
+        <input
+          type="submit"
+          value="Submit"
+          id="submit-btn"
+          onclick="closePopup()"
+        />
       </form>
     </div>
     <div class="footer">William Andrews II</div>

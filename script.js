@@ -1,5 +1,15 @@
 const myLibrary = [];
 const content = document.querySelector(".content");
+const addbookform = document.querySelector(".addbookform");
+
+// Animation to open add book form
+function openPopup() {
+  addbookform.classList.add("open-form");
+}
+
+function closePopup() {
+  addbookform.classList.remove("open-form");
+}
 
 // Constructor for Book objects
 function Book(title, author, pages, read) {
