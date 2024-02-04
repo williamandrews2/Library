@@ -1,6 +1,8 @@
 const myLibrary = [];
 const content = document.querySelector(".content");
 const addbookform = document.querySelector(".addbookform");
+const submitButton = document.querySelector("submit-btn");
+const cancelButton = document.querySelector("cancel-btn");
 
 // Animation to open add book form
 function openPopup() {
@@ -68,3 +70,14 @@ addBookToLibrary("Life Book 2", "Kanye West", "121", "read");
 addBookToLibrary("Rose from Concrete", "Lebron James", "98", "not read");
 
 displayBooks();
+
+//-------------------------------------------
+
+// Event listener for taking input data and closing form on click
+submitButton.addEventListener("click", () => {
+  closePopup();
+});
+
+cancelButton.addEventListener("click", () => {
+  closePopup();
+});

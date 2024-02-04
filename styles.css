@@ -95,6 +95,17 @@ body {
   font-weight: bold;
 }
 
+#cancel-btn {
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 24px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .form-item {
   display: flex;
   justify-content: space-around;
