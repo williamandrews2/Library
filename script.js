@@ -63,6 +63,23 @@ function displayBooks() {
   }
 }
 
+// Store and send input values to the array
+function storeInput() {
+  // Retrieve input elements
+  const titleInput = document.getElementById("titleInput");
+  const authorInput = document.getElementById("authorInput");
+  const pagesInput = document.getElementById("pagesInput");
+  const readInput = document.getElementById("readInput");
+
+  const titleValue = titleInput.value;
+  const authorValue = authorInput.value;
+  const pagesValue = pagesInput.value;
+  const readValue = readInput.value;
+
+  addBookToLibrary(titleValue, authorValue, pagesValue, readValue);
+  displayBooks();
+}
+
 // ------------ TESTING SECTION-------------
 
 addBookToLibrary("Book1", "Jack", "234", "not read");
@@ -74,10 +91,14 @@ displayBooks();
 //-------------------------------------------
 
 // Event listener for taking input data and closing form on click
-submitButton.addEventListener("click", () => {
-  closePopup();
-});
+if (submitButton != null) {
+  submitButton.addEventListener("click", () => {
+    storeInput();
+    closePopup();
+    console.log(myLibrary);
+  });
 
-cancelButton.addEventListener("click", () => {
-  closePopup();
-});
+  cancelButton.addEventListener("click", () => {
+    closePopup();
+  });
+}
