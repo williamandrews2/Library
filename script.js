@@ -120,13 +120,18 @@ function handleCancel(event) {
   event.preventDefault();
 }
 
-// ------------ TESTING SECTION-------------
+// ------------ TESTING SECTION (sample books) -------------
 
-addBookToLibrary("Book1", "Jack", "234", "not read");
-addBookToLibrary("Life Book 2", "Kanye West", "121", "read");
-addBookToLibrary("Rose from Concrete", "Lebron James", "98", "not read");
+addBookToLibrary("The 48 Laws of Power", "Robert Greene", "480", "not read");
+addBookToLibrary(
+  "How to Win Friends & Influence People",
+  "Dale Carnegie",
+  "320",
+  "not read"
+);
+addBookToLibrary("The Lean Startup", "Eric Ries", "336", "not read");
 
-//-------------------------------------------
+//----------------------------------------------------------
 
 // Event listener for cancel and submit buttons on form.
 submitButton.addEventListener("click", handleSubmit, false);
