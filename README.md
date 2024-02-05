@@ -7,7 +7,6 @@ This is a simple Library app that will take user input to add books to their lib
 ## To-Do:
 
 - Add a remove button to each book card
-- Add new book button to add a new book with a dialog box
 - Add button to change the read status
 - Make add button pulse when hovered over.
 - Mobile optimization
