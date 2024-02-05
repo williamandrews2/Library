@@ -81,13 +81,18 @@ function updateBooks() {
   const info = document.createElement("p");
   info.className = "info";
 
+  const readStatus = document.createElement("button");
+  readStatus.className = "readStatus";
+
   title.innerHTML = `${myLibrary[i].title}`;
   author.innerHTML = `${myLibrary[i].author}`;
   info.innerHTML = `${myLibrary[i].title}, by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, ${myLibrary[i].read}`;
+  readStatus.innerHTML = `${myLibrary[i].read}`;
 
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(info);
+  card.appendChild(readStatus);
 
   content.appendChild(card);
 }
@@ -106,7 +111,6 @@ function storeInput() {
   const readValue = readInput.value;
 
   addBookToLibrary(titleValue, authorValue, pagesValue, readValue);
-  console.log(myLibrary);
 }
 
 function handleSubmit(event) {
@@ -122,14 +126,19 @@ function handleCancel(event) {
 
 // ------------ TESTING SECTION (sample books) -------------
 
-addBookToLibrary("The 48 Laws of Power", "Robert Greene", "480", "not read");
+addBookToLibrary(
+  "The 48 Laws of Power",
+  "Robert Greene",
+  "480",
+  "Not read yet"
+);
 addBookToLibrary(
   "How to Win Friends & Influence People",
   "Dale Carnegie",
   "320",
-  "not read"
+  "Not read yet"
 );
-addBookToLibrary("The Lean Startup", "Eric Ries", "336", "not read");
+addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Not read yet");
 
 //----------------------------------------------------------
 
