@@ -36,35 +36,6 @@ function addBookToLibrary(title, author, pages, read) {
   }
 }
 
-// Display each book on the page (DOM manipulation)
-function displayBooks() {
-  for (let i = 0; i < myLibrary.length; i++) {
-    //Create new card element for the book
-    const card = document.createElement("div");
-    card.className = "card";
-
-    // Information displayed in each card
-    const title = document.createElement("h1");
-    title.className = "title";
-
-    const author = document.createElement("h3");
-    author.className = "author";
-
-    const info = document.createElement("p");
-    info.className = "info";
-
-    title.innerHTML = `${myLibrary[i].title}`;
-    author.innerHTML = `${myLibrary[i].author}`;
-    info.innerHTML = `${myLibrary[i].title}, by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, ${myLibrary[i].read}`;
-
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(info);
-
-    content.appendChild(card);
-  }
-}
-
 function updateBooks() {
   let i = myLibrary.length - 1;
   //Create new card element for the book
@@ -124,6 +95,16 @@ function handleCancel(event) {
   event.preventDefault();
 }
 
+function toggleReadStatus() {
+  if (readToggle.innerHTML === "Not read yet") {
+    console.log("1");
+    // readStatus.innerHTML = "Read";
+  } else {
+    console.log(readToggle.innerHTML);
+    // readStatus.innerHTML = "Not read yet";
+  }
+}
+
 // ------------ TESTING SECTION (sample books) -------------
 
 addBookToLibrary(
@@ -142,6 +123,12 @@ addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Not read yet");
 
 //----------------------------------------------------------
 
-// Event listener for cancel and submit buttons on form.
+// Event listeners
 submitButton.addEventListener("click", handleSubmit, false);
 cancelButton.addEventListener("click", handleCancel, false);
+
+const readToggle = document.getElementsByClassName("readStatus");
+
+for (let i = 0; i < readToggle.length; i++) {
+  readToggle[i].addEventListener("click", toggleReadStatus, false);
+}
