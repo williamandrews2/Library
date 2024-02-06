@@ -96,6 +96,8 @@ function handleCancel(event) {
 }
 
 function toggleReadStatus() {
+  console.log("Function toggle has been called.");
+
   if (readToggle.innerHTML === "Not read yet") {
     console.log("1");
     // readStatus.innerHTML = "Read";
@@ -129,6 +131,7 @@ cancelButton.addEventListener("click", handleCancel, false);
 
 const readToggle = document.getElementsByClassName("readStatus");
 
+// Add event listener to all new read buttons
 for (let i = 0; i < readToggle.length; i++) {
   readToggle[i].addEventListener("click", toggleReadStatus, false);
 }
