@@ -111,16 +111,9 @@ body {
   font-weight: bold;
 }
 
-.readStatus {
+#readStatus {
   cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 24px;
-  border: none;
-  background: linear-gradient(to right, rgb(128, 0, 255), rgb(0, 255, 255));
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
+  margin-left: 6px;
 }
 
 .form-item {

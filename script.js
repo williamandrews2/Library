@@ -52,17 +52,22 @@ function updateBooks() {
   const info = document.createElement("p");
   info.className = "info";
 
-  const readStatus = document.createElement("button");
+  let readStatus = document.createElement("input");
   readStatus.className = "readStatus";
+  readStatus.type = "checkbox";
+  readStatus.name = "name";
+  readStatus.id = "readStatus";
+  let label = document.createElement("label");
+  label.appendChild(document.createTextNode("Read"));
 
   title.innerHTML = `${myLibrary[i].title}`;
   author.innerHTML = `${myLibrary[i].author}`;
   info.innerHTML = `${myLibrary[i].title}, by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, ${myLibrary[i].read}`;
-  readStatus.innerHTML = `${myLibrary[i].read}`;
 
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(info);
+  card.appendChild(label);
   card.appendChild(readStatus);
 
   content.appendChild(card);
@@ -95,15 +100,14 @@ function handleCancel(event) {
   event.preventDefault();
 }
 
-function toggleReadStatus() {
-  console.log("Function toggle has been called.");
-
-  if (readToggle.innerHTML === "Not read yet") {
-    console.log("1");
-    // readStatus.innerHTML = "Read";
+// Function to toggle the read status of a book.
+function toggleReadStatus(value, position) {
+  if (value === "Not read yet") {
+    console.log(1);
+    myLibrary[position].read = "Read";
   } else {
-    console.log(readToggle.innerHTML);
-    // readStatus.innerHTML = "Not read yet";
+    console.log(2);
+    myLibrary[position].read = "Not read yet";
   }
 }
 
@@ -121,7 +125,7 @@ addBookToLibrary(
   "320",
   "Not read yet"
 );
-addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Not read yet");
+addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Read");
 
 //----------------------------------------------------------
 
@@ -133,5 +137,7 @@ const readToggle = document.getElementsByClassName("readStatus");
 
 // Add event listener to all new read buttons
 for (let i = 0; i < readToggle.length; i++) {
-  readToggle[i].addEventListener("click", toggleReadStatus, false);
+  readToggle[i].addEventListener("click", () => {
+    toggleReadStatus(myLibrary[i].read, i);
+  });
 }
