@@ -37,40 +37,65 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function updateBooks() {
-  let i = myLibrary.length - 1;
-  //Create new card element for the book
-  const card = document.createElement("div");
-  card.className = "card";
+  content.innerHTML = ""; // Clear existing content
 
-  // Information displayed in each card
-  const title = document.createElement("h1");
-  title.className = "title";
+  myLibrary.forEach((book, index) => {
+    // Create new card element for the book
+    const card = document.createElement("div");
+    card.className = "card";
 
-  const author = document.createElement("h3");
-  author.className = "author";
+    // Information displayed in each card
+    const title = document.createElement("h1");
+    title.className = "title";
 
-  const info = document.createElement("p");
-  info.className = "info";
+    const author = document.createElement("h3");
+    author.className = "author";
 
-  let readStatus = document.createElement("input");
-  readStatus.className = "readStatus";
-  readStatus.type = "checkbox";
-  readStatus.name = "name";
-  readStatus.id = "readStatus";
-  let label = document.createElement("label");
-  label.appendChild(document.createTextNode("Read"));
+    const info = document.createElement("p");
+    info.className = "info";
 
-  title.innerHTML = `${myLibrary[i].title}`;
-  author.innerHTML = `${myLibrary[i].author}`;
-  info.innerHTML = `${myLibrary[i].title}, by ${myLibrary[i].author}, ${myLibrary[i].pages} pages, ${myLibrary[i].read}`;
+    const removeButton = document.createElement("button");
+    removeButton.className = "removeButton";
 
-  card.appendChild(title);
-  card.appendChild(author);
-  card.appendChild(info);
-  card.appendChild(label);
-  card.appendChild(readStatus);
+    let readStatus = document.createElement("input");
+    readStatus.className = "readStatus";
+    readStatus.type = "checkbox";
+    readStatus.name = "name";
+    readStatus.id = "readStatus";
+    readStatus.checked = book.read === "Read";
+    let label = document.createElement("label");
+    label.appendChild(document.createTextNode("Read"));
 
-  content.appendChild(card);
+    title.innerHTML = `${book.title}`;
+    author.innerHTML = `${book.author}`;
+    info.innerHTML = `${book.title}, by ${book.author}, ${book.pages} pages, ${book.read}`;
+    removeButton.innerHTML = "Remove";
+
+    // Append elements to card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(info);
+    card.appendChild(label);
+    card.appendChild(readStatus);
+    card.appendChild(removeButton);
+
+    // Append card to content
+    content.appendChild(card);
+
+    // Add event listener to remove button
+    removeButton.addEventListener("click", () => removeBook(index));
+
+    // Add event listener to read status checkbox
+    readStatus.addEventListener("change", () =>
+      toggleReadStatus(index, readStatus.checked)
+    );
+  });
+}
+
+// Function to remove a book from the library and update the display
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  updateBooks();
 }
 
 // Store and send input values to the array
@@ -109,6 +134,12 @@ function toggleReadStatus(value, position) {
     console.log(2);
     myLibrary[position].read = "Not read yet";
   }
+}
+
+// Function to toggle the read status of a book
+function toggleReadStatus(index, isChecked) {
+  myLibrary[index].read = isChecked ? "Read" : "Not read yet";
+  updateBooks(); // Update the display
 }
 
 // ------------ TESTING SECTION (sample books) -------------
