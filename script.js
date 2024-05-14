@@ -1,11 +1,16 @@
+// Array holding all the books in the library
 const myLibrary = [];
+
+// Main content container
 const content = document.querySelector(".content");
+
+// "Add book" button and form
 const addbookform = document.querySelector(".addbookform");
 const submitButton = document.querySelector("#submit-btn");
 const cancelButton = document.querySelector("#cancel-btn");
 const form = document.getElementById("myForm");
 
-// Animation to open add book form
+// "Add book" popup functions
 function openPopup() {
   addbookform.classList.add("open-form");
 }
@@ -14,7 +19,7 @@ function closePopup() {
   addbookform.classList.remove("open-form");
 }
 
-// Constructor for Book objects
+// Book object constructor
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -22,7 +27,6 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-// Create a new book and add it to the myLibrary array
 function addBookToLibrary(title, author, pages, read) {
   let newBook = new Book(title, author, pages, read);
 
@@ -163,8 +167,6 @@ addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Read");
 // Event listeners
 submitButton.addEventListener("click", handleSubmit, false);
 cancelButton.addEventListener("click", handleCancel, false);
-
-const readToggle = document.getElementsByClassName("readStatus");
 
 // Add event listener to all new read buttons
 for (let i = 0; i < readToggle.length; i++) {
