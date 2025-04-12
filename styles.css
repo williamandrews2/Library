@@ -111,7 +111,7 @@ body {
   font-weight: bold;
 }
 
-#readStatus {
+.readStatus {
   cursor: pointer;
   margin-left: 6px;
 }

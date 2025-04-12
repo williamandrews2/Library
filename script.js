@@ -8,7 +8,7 @@ const content = document.querySelector(".content");
 const addbookform = document.querySelector(".addbookform");
 const submitButton = document.querySelector("#submit-btn");
 const cancelButton = document.querySelector("#cancel-btn");
-const form = document.getElementById("myForm");
+const form = document.getElementById("bookForm");
 
 // "Add book" popup functions
 function openPopup() {
@@ -65,7 +65,7 @@ function updateBooks() {
     readStatus.className = "readStatus";
     readStatus.type = "checkbox";
     readStatus.name = "name";
-    readStatus.id = "readStatus";
+    readStatus.className = "readStatus";
     readStatus.checked = book.read === "Read";
     let label = document.createElement("label");
     label.appendChild(document.createTextNode("Read"));
@@ -83,10 +83,8 @@ function updateBooks() {
     card.appendChild(readStatus);
     card.appendChild(removeButton);
 
-    // Append card to content
     content.appendChild(card);
 
-    // Add event listener to remove button
     removeButton.addEventListener("click", () => removeBook(index));
 
     // Add event listener to read status checkbox
@@ -96,7 +94,6 @@ function updateBooks() {
   });
 }
 
-// Function to remove a book from the library and update the display
 function removeBook(index) {
   myLibrary.splice(index, 1);
   updateBooks();
@@ -118,26 +115,9 @@ function storeInput() {
   addBookToLibrary(titleValue, authorValue, pagesValue, readValue);
 }
 
-function handleSubmit(event) {
-  closePopup();
-  storeInput();
-  event.preventDefault();
-}
-
 function handleCancel(event) {
   closePopup();
   event.preventDefault();
-}
-
-// Function to toggle the read status of a book.
-function toggleReadStatus(value, position) {
-  if (value === "Not read yet") {
-    console.log(1);
-    myLibrary[position].read = "Read";
-  } else {
-    console.log(2);
-    myLibrary[position].read = "Not read yet";
-  }
 }
 
 // Function to toggle the read status of a book
@@ -165,12 +145,14 @@ addBookToLibrary("The Lean Startup", "Eric Ries", "336", "Read");
 //----------------------------------------------------------
 
 // Event listeners
-submitButton.addEventListener("click", handleSubmit, false);
-cancelButton.addEventListener("click", handleCancel, false);
+form.addEventListener("submit", function (e) {
+  if (!form.checkValidity()) {
+    e.preventDefault();
+    form.reportValidity(); // show native validation messages
+  }
+  e.preventDefault(); // prevent page reload on submit
+  closePopup();
+  storeInput();
+});
 
-// Add event listener to all new read buttons
-for (let i = 0; i < readToggle.length; i++) {
-  readToggle[i].addEventListener("click", () => {
-    toggleReadStatus(myLibrary[i].read, i);
-  });
-}
+cancelButton.addEventListener("click", handleCancel, false);
